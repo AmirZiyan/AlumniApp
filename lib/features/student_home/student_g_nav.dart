@@ -30,7 +30,7 @@ class _StudentGNavState extends State<StudentGNav> {
               text: ' Home',
             ),
             GButton(icon: Icons.work, text: ' Jobs'),
-            GButton(icon: Icons.account_circle, text: ' Profile')
+            // GButton(icon: Icons.account_circle, text: ' Profile')
           ]),
     );
   }

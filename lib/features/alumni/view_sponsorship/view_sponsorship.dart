@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_services_with_bloc/features/alumni/view_sponsorship/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_slide_to_act/gradient_slide_to_act.dart';
 
@@ -106,6 +107,7 @@ class _AlumniViewSponsorState extends State<AlumniViewSponsor> {
                                                           const Color(
                                                               0Xff172663),
                                                       onSubmit: () {
+                                                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>PaymentGatewayPage()));
                                                         // fund Payment button
                                                         Navigator.pop(context);
                                                         ScaffoldMessenger.of(

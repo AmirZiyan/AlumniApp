@@ -84,15 +84,33 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: const Text('Call HR'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child:
-                                            const Text('Apply Through Email'),
-                                      ),
+                                      ElevatedButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text('Applied '),
+                                              content: const Text('Your job application request have been sent!'),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('OK'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: const Text('Apply now'),
+                                    ),
+                                      // TextButton(
+                                      //   onPressed: () {},
+                                      //   child:
+                                      //       const Text('Apply Through Email'),
+                                      // ),
                                     ],
                                   )
                                 ],

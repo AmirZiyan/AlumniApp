@@ -1,3 +1,4 @@
+import 'package:firebase_services_with_bloc/features/alumni/Talks/talks.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
 import 'package:firebase_services_with_bloc/features/fun_raising/fundraising.dart';
 import 'package:flutter/material.dart';
@@ -57,9 +58,14 @@ class _StudentHomeState extends State<StudentHome> {
           AlumniCards(
             width: width,
             height: height,
-            imagePath: 'assets/images/chat.png',
-            label: 'Chats',
-            callback: () {},
+            imagePath: 'assets/images/talks.png',
+            label: 'Talks',
+            callback: () {Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const TalksPage(),
+                ),
+              );},
           ),
         ],
       ),

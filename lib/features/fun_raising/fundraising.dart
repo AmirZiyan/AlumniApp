@@ -20,7 +20,7 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Jobs'),
+        title: const Text('Fund Raising'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -144,10 +144,10 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                       },
                                       child: const Text('Sponsor Now'),
                                     ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: const Text('Call Student'),
-                                    )
+                                    // TextButton(
+                                    //   onPressed: () {},
+                                    //   child: const Text('Call Student'),
+                                    // )
                                   ],
                                 )
                               ],
