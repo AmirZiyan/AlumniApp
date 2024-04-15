@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
@@ -76,13 +77,14 @@ class _AdminPageState extends State<AdminPage> {
             ),
             AuthButton(
               label: 'Logout',
-              callback: () {
+              callback: () async {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const StartPage(),
                     ),
                     (route) => false);
+                await FirebaseAuth.instance.signOut();
               },
             ),
           ],
