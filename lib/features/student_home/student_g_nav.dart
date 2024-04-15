@@ -11,7 +11,7 @@ class StudentGNav extends StatefulWidget {
 }
 
 class _StudentGNavState extends State<StudentGNav> {
-  List<Widget> pages = [StudentHome(), StudentJobsPage(), StudentProfilePage()];
+  List<Widget> pages = [const StudentHome(), const StudentJobsPage(), const StudentProfilePage()];
   @override
   int index = 0;
   Widget build(BuildContext context) {
@@ -24,12 +24,12 @@ class _StudentGNavState extends State<StudentGNav> {
             });
           },
           selectedIndex: 0,
-          tabs: [
-            GButton(
+          tabs: const [
+             GButton(
               icon: Icons.home,
               text: ' Home',
             ),
-            GButton(icon: Icons.work, text: ' Jobs'),
+             GButton(icon: Icons.work, text: ' Jobs'),
             // GButton(icon: Icons.account_circle, text: ' Profile')
           ]),
     );
