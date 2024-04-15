@@ -35,7 +35,7 @@ class StartPage extends StatelessWidget {
               height: height * 0.03,
             ),
             Text(
-              'Choose The Type of Student ',
+              'Choose The Type of Account ',
               style: TextStyle(fontSize: width * 0.04),
             ),
             SizedBox(
