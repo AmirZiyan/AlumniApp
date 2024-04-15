@@ -30,6 +30,7 @@ class _AdminJobPageState extends State<AdminJobPage> {
                 Map<String, dynamic> data = document.data() as Map<String, dynamic>;
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
+                  
                   child: GestureDetector(
                     onLongPress: () => _deleteJob(document.id),
                     child: Card(
