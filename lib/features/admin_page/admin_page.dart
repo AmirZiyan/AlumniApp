@@ -1,3 +1,4 @@
+import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
 import 'package:firebase_services_with_bloc/features/start_up_page/start_page.dart';
@@ -24,7 +25,18 @@ class _AdminPageState extends State<AdminPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AlumniCards(
-                    height: height, width: width, imagePath: 'assets/images/jobs.png', label: 'Jobs'),
+                    callback: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AdminJobPage(),
+                        ),
+                      );
+                    },
+                    height: height,
+                    width: width,
+                    imagePath: 'assets/images/jobs.png',
+                    label: 'Jobs'),
                 AlumniCards(
                     height: height,
                     width: width,
@@ -36,7 +48,10 @@ class _AdminPageState extends State<AdminPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AlumniCards(
-                    height: height, width: width, imagePath: 'assets/images/talks.png', label: 'Talks'),
+                    height: height,
+                    width: width,
+                    imagePath: 'assets/images/talks.png',
+                    label: 'Talks'),
                 AlumniCards(
                     height: height,
                     width: width,
@@ -48,7 +63,10 @@ class _AdminPageState extends State<AdminPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AlumniCards(
-                    height: height, width: width, imagePath: 'assets/images/chat.png', label: 'Chats'),
+                    height: height,
+                    width: width,
+                    imagePath: 'assets/images/chat.png',
+                    label: 'Chats'),
                 AlumniCards(
                     height: height,
                     width: width,
