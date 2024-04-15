@@ -15,7 +15,7 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
-    return Center(
+    return const Center(
       child: Text('Profile'),
     );
   }
