@@ -12,6 +12,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
 class StartPage extends StatelessWidget {
+
 final securityCode = '2662';
 const StartPage({super.key});
 @override
@@ -19,6 +20,7 @@ const StartPage({super.key});
     final TextEditingController codeController = TextEditingController();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
