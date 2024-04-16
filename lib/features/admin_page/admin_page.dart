@@ -71,11 +71,11 @@ class _AdminPageState extends State<AdminPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AlumniCards(
-                    height: height,
-                    width: width,
-                    imagePath: 'assets/images/chat.png',
-                    label: 'Chats'),
+                // AlumniCards(
+                //     height: height,
+                //     width: width,
+                //     imagePath: 'assets/images/chat.png',
+                //     label: 'Chats'),
                 AlumniCards(
                     height: height,
                     width: width,
