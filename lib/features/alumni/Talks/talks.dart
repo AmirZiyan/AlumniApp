@@ -1,12 +1,12 @@
-import 'dart:developer';
+// ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TalksPage extends StatefulWidget {
-  const TalksPage({Key? key});
+  const TalksPage({super.key,});
 
   @override
   _TalksPageState createState() => _TalksPageState();
