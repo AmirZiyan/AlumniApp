@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -22,7 +24,10 @@ void main() {
 
 
 class PaymentGatewayPage extends StatefulWidget {
+  const PaymentGatewayPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PaymentGatewayPageState createState() => _PaymentGatewayPageState();
 }
 
@@ -48,7 +53,6 @@ class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _razorpay=Razorpay();
      _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
@@ -57,7 +61,7 @@ class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
   }
 
   void initiatePayment() async {
-    print("payemnt");
+    print("payment");
     var options = {
       'key': 'rzp_test_TtSDhSH3AFn8Su',
       'amount': 10000, // Payment amount in paisa (e.g., 10000 for ₹100)
@@ -78,12 +82,12 @@ class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Gateway'),
+        title: const Text('Payment Gateway'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: initiatePayment,
-          child: Text('Pay Now'),
+          child: const Text('Pay Now'),
         ),
       ),
     );

@@ -26,29 +26,32 @@ class _AdminJobPageState extends State<AdminJobPage> {
             return const Center(child: Text('No Jobs Available'));
           } else {
             return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  
-                  child: GestureDetector(
-                    onLongPress: () => _deleteJob(document.id),
-                    child: Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildText('Company Name:', data['company_name']),
-                          _buildText('Position:', data['position']),
-                          _buildText('Place:', data['place']),
-                          _buildText('Salary:', data['salary']),
-                          _buildText('Apply Email:', data['email']),
-                          _buildText('HR Contact Number:', data['contact_number']),
-                        ],
+              children: snapshot.data!.docs.map(
+                (DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data() as Map<String, dynamic>;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onLongPress: () => _deleteJob(document.id),
+                      child: Card(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildText('Company Name:', data['company_name']),
+                            _buildText('Position:', data['position']),
+                            _buildText('Place:', data['place']),
+                            _buildText('Salary:', data['salary']),
+                            _buildText('Apply Email:', data['email']),
+                            _buildText(
+                                'HR Contact Number:', data['contact_number']),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                },
+              ).toList(),
             );
           }
         },
@@ -64,22 +67,22 @@ class _AdminJobPageState extends State<AdminJobPage> {
   }
 
   void _deleteJob(String documentId) {
-    FirebaseFirestore.instance
-        .collection('jobs')
-        .doc(documentId)
-        .delete()
-        .then((_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Job details deleted"),
-        ),
-      );
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Failed to delete job details"),
-        ),
-      );
-    });
+    FirebaseFirestore.instance.collection('jobs').doc(documentId).delete().then(
+      (_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Job details deleted"),
+          ),
+        );
+      },
+    ).catchError(
+      (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Failed to delete job details"),
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/talkes_booked/talks_booked_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
 import 'package:firebase_services_with_bloc/features/start_up_page/start_page.dart';
@@ -6,7 +8,6 @@ import 'package:flutter/material.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
-
   @override
   State<AdminPage> createState() => _AdminPageState();
 }
@@ -48,6 +49,14 @@ class _AdminPageState extends State<AdminPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 AlumniCards(
+                    callback: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TalksBookedPage(),
+                        ),
+                      );
+                    },
                     height: height,
                     width: width,
                     imagePath: 'assets/images/talks.png',
@@ -76,13 +85,14 @@ class _AdminPageState extends State<AdminPage> {
             ),
             AuthButton(
               label: 'Logout',
-              callback: () {
+              callback: () async {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const StartPage(),
                     ),
                     (route) => false);
+                await FirebaseAuth.instance.signOut();
               },
             ),
           ],

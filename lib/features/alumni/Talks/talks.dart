@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TalksPage extends StatefulWidget {
-  const TalksPage({Key? key});
+  const TalksPage({super.key,});
 
   @override
   _TalksPageState createState() => _TalksPageState();
@@ -23,7 +27,8 @@ class _TalksPageState extends State<TalksPage> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection('Talks').snapshots(),
+              stream:
+                  FirebaseFirestore.instance.collection('Talks').snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   final docs = snapshot.data!.docs;
@@ -49,7 +54,8 @@ class _TalksPageState extends State<TalksPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('Description: ${data['description']}'),
+                                  child: Text(
+                                      'Description: ${data['description']}'),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -63,13 +69,50 @@ class _TalksPageState extends State<TalksPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {
+                                      onPressed: () async {
+                                        try {
+                                          await FirebaseFirestore.instance
+                                              .collection('talks_booked')
+                                              .add({
+                                            'Email': FirebaseAuth
+                                                .instance.currentUser!.email
+                                                .toString(),
+                                            'event': '${data['title']}',
+                                            'time': '${data['time']}'
+                                          }).then((value) => showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: const Text(
+                                                            'Seat Booked'),
+                                                        content: const Text(
+                                                            'Your seat has been booked!'),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                                'OK'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ));
+                                        } catch (e) {
+                                          log(e.toString());
+                                        }
+
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
                                               title: const Text('Seat Booked'),
-                                              content: const Text('Your seat has been booked!'),
+                                              content: const Text(
+                                                  'Your seat has been booked!'),
                                               actions: <Widget>[
                                                 TextButton(
                                                   onPressed: () {

@@ -55,6 +55,7 @@ class _StudentHomeState extends State<StudentHome> {
           SizedBox(
             height: height * 0.1,
           ),
+
           AlumniCards(
             width: width,
             height: height,
