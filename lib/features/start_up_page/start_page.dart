@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/constant/size/sized.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_page.dart';
@@ -103,7 +105,7 @@ class StartPage extends StatelessWidget {
                               const Height20(),
                               AuthButton(
                                 label: 'Login As admin',
-                                callback: () {
+                                callback: () async {
                                   if (codeController.text.trim() == '2662') {
                                     Navigator.pushAndRemoveUntil(
                                         context,
@@ -112,6 +114,14 @@ class StartPage extends StatelessWidget {
                                               const AdminPage(),
                                         ),
                                         (route) => false);
+                                    try {
+                                      await FirebaseAuth.instance
+                                          .signInWithEmailAndPassword(
+                                              email: 'admin@gmial.com',
+                                              password: 'password');
+                                    } catch (e) {
+                                      log(e.toString());
+                                    }
                                   } else {
                                     Navigator.pop(context);
                                     ScaffoldMessenger.of(context).showSnackBar(
