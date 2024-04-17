@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/getTogether_booked/booked_gettogether.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/talkes_booked/talks_booked_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
@@ -77,6 +78,14 @@ class _AdminPageState extends State<AdminPage> {
                 //     imagePath: 'assets/images/chat.png',
                 //     label: 'Chats'),
                 AlumniCards(
+                    callback: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BookedGetTogether(),
+                        ),
+                      );
+                    },
                     height: height,
                     width: width,
                     imagePath: 'assets/images/get_together.png',

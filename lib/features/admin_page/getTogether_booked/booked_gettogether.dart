@@ -1,22 +1,24 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class TalksBookedPage extends StatefulWidget {
-  const TalksBookedPage({Key? key}) : super(key: key);
+class BookedGetTogether extends StatefulWidget {
+  const BookedGetTogether({super.key});
 
   @override
-  State<TalksBookedPage> createState() => _TalksBookedPageState();
+  State<BookedGetTogether> createState() => _BookedGetTogetherState();
 }
 
-class _TalksBookedPageState extends State<TalksBookedPage> {
+class _BookedGetTogetherState extends State<BookedGetTogether> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-        title: const Text('Booked Talks'),
+        title: const Text('Talks'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('talks_booked').snapshots(),
+        stream: FirebaseFirestore.instance.collection('booked_getTogether').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -46,11 +48,11 @@ class _TalksBookedPageState extends State<TalksBookedPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('Event: ${data['event']}'),
+                          child: Text('Batch: ${data['batch']}'),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('Time: ${data['time']}'),
+                          child: Text('venue: ${data['venue']}'),
                         ),
                       ],
                     ),

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -23,7 +26,9 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection('Get_together').snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('Get_together')
+                  .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   final docs = snapshot.data!.docs;
@@ -55,17 +60,53 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text('Time: ${data['time']}'),
                                 ),
-                                 Row(
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {
+                                      onPressed: () async {
+                                        try {
+                                          await FirebaseFirestore.instance
+                                              .collection('booked_getTogether')
+                                              .add({
+                                            'Email': FirebaseAuth
+                                                .instance.currentUser!.email
+                                                .toString(),
+                                            'batch': '${data['batch']}',
+                                            'venue': '${data['venue']}'
+                                          }).then((value) => showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: const Text(
+                                                            'Seat Booked'),
+                                                        content: const Text(
+                                                            'Your seat has been booked!'),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                                'OK'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ));
+                                        } catch (e) {
+                                          log(e.toString());
+                                        }
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
                                               title: const Text('Seat Booked'),
-                                              content: const Text('Your seat has been booked!'),
+                                              content: const Text(
+                                                  'Your seat has been booked!'),
                                               actions: <Widget>[
                                                 TextButton(
                                                   onPressed: () {

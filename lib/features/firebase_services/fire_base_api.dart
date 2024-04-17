@@ -7,7 +7,6 @@ final _db = FirebaseFirestore.instance;
 User? user;
 
 class FirebaseApi {
-  // sign up alumni with firebase
   static signUpAlumni(
       String email, String password, String name, BuildContext context) async {
     await _auth
@@ -24,12 +23,9 @@ class FirebaseApi {
         );
       },
     );
-    // log in alumni
-
     _auth.signInWithEmailAndPassword(email: email, password: password);
   }
-
- static signInAlumni(String email, String password) async {
+  static signInAlumni(String email, String password) async {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
   }
 }

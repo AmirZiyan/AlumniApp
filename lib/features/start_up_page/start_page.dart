@@ -124,7 +124,8 @@ class StartPage extends StatelessWidget {
                                       }
                                     } else {
                                       Navigator.pop(context);
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         const SnackBar(
                                           content:
                                               Text('Incorrect Security Code'),
@@ -148,7 +149,10 @@ class StartPage extends StatelessWidget {
                   );
                 },
                 child: const Text('Login As Admin'),
-              )
+              ).animate().fade(
+                    delay: const Duration(seconds: 1),
+                    duration: const Duration(seconds: 2),
+                  )
             ],
           ),
         ),
