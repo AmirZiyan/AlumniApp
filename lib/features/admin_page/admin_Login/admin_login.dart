@@ -48,23 +48,28 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
               AuthButton(
                 label: 'Login',
                 callback: () async {
-                  try{
+                  try {
                     await FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text)
-                      .then(
-                        (value) => Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdminPage()),
-                            (route) => false),
-                      );
-
-                  }catch(e){
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                        .signInWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text)
+                        .then(
+                          (value) => Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AdminPage(),
+                              ),
+                              (route) => false),
+                        );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          e.toString(),
+                        ),
+                      ),
+                    );
                   }
-                 
                 },
               ),
             ],
