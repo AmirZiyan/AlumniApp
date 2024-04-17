@@ -80,6 +80,7 @@ flutter:
     - assets/animation/signUp.json
     - assets/animation/campus.json
     - assets/animation/girl.json
+    - assets/animation/admin.json
     - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

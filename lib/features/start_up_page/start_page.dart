@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/constant/size/sized.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/admin_Login/admin_login.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/alumni_login_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
@@ -107,21 +108,13 @@ class StartPage extends StatelessWidget {
                                   label: 'Login As admin',
                                   callback: () async {
                                     if (codeController.text.trim() == '2662') {
-                                      Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const AdminPage(),
-                                          ),
-                                          (route) => false);
-                                      try {
-                                        await FirebaseAuth.instance
-                                            .signInWithEmailAndPassword(
-                                                email: 'admin@gmial.com',
-                                                password: 'password');
-                                      } catch (e) {
-                                        log(e.toString());
-                                      }
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AdminLoginPage(),
+                                        ),
+                                      );
                                     } else {
                                       Navigator.pop(context);
                                       ScaffoldMessenger.of(context)
