@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/booked_jobs/booked_jobes.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/getTogether_booked/booked_gettogether.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/talkes_booked/talks_booked_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
@@ -39,11 +40,19 @@ class _AdminPageState extends State<AdminPage> {
                     width: width,
                     imagePath: 'assets/images/jobs.png',
                     label: 'Jobs'),
-                // AlumniCards(
-                //     height: height,
-                //     width: width,
-                //     imagePath: 'assets/images/fund.png',
-                //     label: 'Fund Raising')
+                AlumniCards(
+                    callback: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AppliedJobs(),
+                        ),
+                      );
+                    },
+                    height: height,
+                    width: width,
+                    imagePath: 'assets/images/jobs.png',
+                    label: 'Applied Jobs')
               ],
             ),
             Row(

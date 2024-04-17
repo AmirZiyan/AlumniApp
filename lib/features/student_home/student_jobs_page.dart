@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/start_up_page/start_page.dart';
@@ -85,24 +87,45 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       ElevatedButton(
-                                      onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: const Text('Applied '),
-                                              content: const Text('Your job application request have been sent!'),
-                                              actions: <Widget>[
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('OK'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
+                                      onPressed: ()async {
+
+  try {
+                                          await FirebaseFirestore.instance
+                                              .collection('applied_jobs')
+                                              .add({
+                                            'Email': FirebaseAuth
+                                                .instance.currentUser!.email
+                                                .toString(),
+                                            'Company': '${data['company_name']}',
+                                            'Position': '${data['position']}'
+                                          }).then((value) => showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: const Text(
+                                                            'Job Applied'),
+                                                        content: const Text(
+                                                            'Your Applications Sent SuccessFully'),
+                                                        actions: <Widget>[
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                                'OK'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ));
+                                        } catch (e) {
+                                          log(e.toString());
+                                        }
+
+                                       
                                       },
                                       child: const Text('Apply now'),
                                     ),
