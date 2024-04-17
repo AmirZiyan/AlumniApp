@@ -39,11 +39,11 @@ class _AdminPageState extends State<AdminPage> {
                     width: width,
                     imagePath: 'assets/images/jobs.png',
                     label: 'Jobs'),
-                AlumniCards(
-                    height: height,
-                    width: width,
-                    imagePath: 'assets/images/fund.png',
-                    label: 'Fund Raising')
+                // AlumniCards(
+                //     height: height,
+                //     width: width,
+                //     imagePath: 'assets/images/fund.png',
+                //     label: 'Fund Raising')
               ],
             ),
             Row(
@@ -62,11 +62,11 @@ class _AdminPageState extends State<AdminPage> {
                     width: width,
                     imagePath: 'assets/images/talks.png',
                     label: 'Talks'),
-                AlumniCards(
-                    height: height,
-                    width: width,
-                    imagePath: 'assets/images/sponsor.png',
-                    label: 'SponsorShip')
+                // AlumniCards(
+                //     height: height,
+                //     width: width,
+                //     imagePath: 'assets/images/sponsor.png',
+                //     label: 'SponsorShip')
               ],
             ),
             Row(
