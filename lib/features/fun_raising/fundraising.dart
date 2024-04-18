@@ -133,7 +133,7 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                                               'Account_no':
                                                                   '${data['ac_no']}',
                                                               'Amount':
-                                                                  '$amountController.text',
+                                                                  '${double.parse(amountController.text)}',
                                                               'Amount_Needed_Person':
                                                                   '${data['name']}'
                                                             }).then(
