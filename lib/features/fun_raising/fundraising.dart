@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -87,15 +89,18 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(20.0),
+                                                        const EdgeInsets.all(
+                                                            20.0),
                                                     child: TextField(
                                                       controller:
                                                           amountController,
-                                                      decoration: InputDecoration(
-                                                          hintText:
-                                                              'Enter Amount',
-                                                          border:
-                                                              OutlineInputBorder()),
+                                                      decoration:
+                                                          const InputDecoration(
+                                                        hintText:
+                                                            'Enter Amount',
+                                                        border:
+                                                            OutlineInputBorder(),
+                                                      ),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -128,12 +133,14 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                                               'Account_no':
                                                                   '${data['ac_no']}',
                                                               'Amount':
-                                                                  '${amountController.text}',
+                                                                  '$amountController.text',
                                                               'Amount_Needed_Person':
                                                                   '${data['name']}'
-                                                            }).then((value) =>
-                                                                    Navigator.pop(
-                                                                        context));
+                                                            }).then(
+                                                              (value) =>
+                                                                  Navigator.pop(
+                                                                      context),
+                                                            );
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
@@ -149,7 +156,7 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                            SnackBar(
+                                                            const SnackBar(
                                                               content: Text(
                                                                   'Please Enter An Amount'),
                                                             ),

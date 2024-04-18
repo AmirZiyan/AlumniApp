@@ -13,8 +13,8 @@ class StudentProfilePage extends StatefulWidget {
 class _StudentProfilePageState extends State<StudentProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
-    final width = MediaQuery.sizeOf(context).width;
+    // final height = MediaQuery.sizeOf(context).height;
+    // final width = MediaQuery.sizeOf(context).width;
     return const Center(
       child: Text('Profile'),
     );

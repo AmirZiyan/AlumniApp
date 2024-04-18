@@ -11,9 +11,14 @@ class StudentGNav extends StatefulWidget {
 }
 
 class _StudentGNavState extends State<StudentGNav> {
-  List<Widget> pages = [const StudentHome(), const StudentJobsPage(), const StudentProfilePage()];
-  @override
+  List<Widget> pages = [
+    const StudentHome(),
+    const StudentJobsPage(),
+    const StudentProfilePage()
+  ];
   int index = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[index],
@@ -25,11 +30,11 @@ class _StudentGNavState extends State<StudentGNav> {
           },
           selectedIndex: 0,
           tabs: const [
-             GButton(
+            GButton(
               icon: Icons.home,
               text: ' Home',
             ),
-             GButton(icon: Icons.work, text: ' Jobs'),
+            GButton(icon: Icons.work, text: ' Jobs'),
             // GButton(icon: Icons.account_circle, text: ' Profile')
           ]),
     );
