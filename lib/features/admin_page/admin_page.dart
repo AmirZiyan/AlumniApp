@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/booked_jobs/booked_jobes.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/create_talks.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/funds/received_funds.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/getTogether_booked/booked_gettogether.dart';
-import 'package:firebase_services_with_bloc/features/admin_page/talkes_booked/talks_booked_page.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni_home_screen/presentation/alumni_home_screen.dart';
 import 'package:firebase_services_with_bloc/features/start_up_page/start_page.dart';
@@ -46,7 +46,8 @@ class _AdminPageState extends State<AdminPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AppliedJobs(),
+                          builder: (context) => const AppliedJobs(),
+                          
                         ),
                       );
                     },
@@ -64,14 +65,14 @@ class _AdminPageState extends State<AdminPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const TalksBookedPage(),
+                          builder: (context) => const CreateTalksFromAdmin(),
                         ),
                       );
                     },
                     height: height,
                     width: width,
                     imagePath: 'assets/images/talks.png',
-                    label: 'Talks'),
+                    label: 'Create Talks'),
                 AlumniCards(
                     callback: () {
                       Navigator.push(

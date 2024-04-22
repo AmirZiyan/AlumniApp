@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TalksPage extends StatefulWidget {
-  const TalksPage({super.key,});
+  const TalksPage({
+    super.key,
+  });
 
   @override
   _TalksPageState createState() => _TalksPageState();
@@ -15,8 +17,8 @@ class TalksPage extends StatefulWidget {
 class _TalksPageState extends State<TalksPage> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final height = MediaQuery.of(context).size.height;
+    // final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
