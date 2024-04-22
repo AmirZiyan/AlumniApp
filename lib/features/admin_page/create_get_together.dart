@@ -1,25 +1,31 @@
+
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/auth_button.dart';
 import 'package:firebase_services_with_bloc/features/alumni/auth/login/presentation/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
-class CreateTalksFromAdmin extends StatefulWidget {
-  const CreateTalksFromAdmin({super.key});
+class CreateGetTogether extends StatefulWidget {
+  const CreateGetTogether({super.key});
 
   @override
-  State<CreateTalksFromAdmin> createState() => _CreateTalksFromAdminState();
+  State<CreateGetTogether> createState() => _CreateGetTogetherState();
 }
 
-class _CreateTalksFromAdminState extends State<CreateTalksFromAdmin> {
-  final speaksController = TextEditingController();
-  final dateController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final timeController = TextEditingController();
-  final tittleController = TextEditingController();
+class _CreateGetTogetherState extends State<CreateGetTogether> {
+  final batchController = TextEditingController();
+    final dateController = TextEditingController();
+      final timeController = TextEditingController();
+      final venueController =TextEditingController();
+
+
+
+
+  final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-    final db = FirebaseFirestore.instance;
-    return Scaffold(
+    return   Scaffold(
       appBar: AppBar(
         title: const Text('Create Talks '),
       ),
@@ -29,40 +35,30 @@ class _CreateTalksFromAdminState extends State<CreateTalksFromAdmin> {
             height: 30,
           ),
           CustomTextField(
-            label: 'Speaker',
-            controller: speaksController,
+            label: 'Batch',
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextField(
             label: 'Date',
-            controller: dateController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            label: 'Description',
-            controller: descriptionController,
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextField(
             label: 'Time',
-            controller: timeController,
           ),
           const SizedBox(
             height: 20,
           ),
           CustomTextField(
-            label: 'Tittle',
-            controller: tittleController,
+            label: 'Venue',
           ),
           const SizedBox(
             height: 20,
           ),
+          
           AuthButton(
             label: 'Create Talks',
             callback: () async {
@@ -70,11 +66,11 @@ class _CreateTalksFromAdminState extends State<CreateTalksFromAdmin> {
                   .collection('jobs')
                   .add(
                     {
-                      'title': tittleController.text,
-                      'description': descriptionController.text,
-                      'speaker': speaksController.text,
-                      'time': timeController.text,
-                      'date': timeController.text
+                      // 'title': tittleController.text,
+                      // 'description': descriptionController.text,
+                      // 'speaker': speaksController.text,
+                      // 'time': timeController.text,
+                      // 'date': timeController.text
                     },
                   )
                   .then(

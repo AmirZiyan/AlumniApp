@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/booked_jobs/booked_jobes.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/create_talks.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/funds/received_funds.dart';
@@ -28,26 +27,14 @@ class _AdminPageState extends State<AdminPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AlumniCards(
-                    callback: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AdminJobPage(),
-                        ),
-                      );
-                    },
-                    height: height,
-                    width: width,
-                    imagePath: 'assets/images/jobs.png',
-                    label: 'Jobs'),
+                
                 AlumniCards(
                     callback: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const AppliedJobs(),
-                          
+
                         ),
                       );
                     },
@@ -91,11 +78,7 @@ class _AdminPageState extends State<AdminPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // AlumniCards(
-                //     height: height,
-                //     width: width,
-                //     imagePath: 'assets/images/chat.png',
-                //     label: 'Chats'),
+               
                 AlumniCards(
                     callback: () {
                       Navigator.push(
@@ -108,7 +91,7 @@ class _AdminPageState extends State<AdminPage> {
                     height: height,
                     width: width,
                     imagePath: 'assets/images/get_together.png',
-                    label: 'GetTogether')
+                    label: 'Create GetTogether')
               ],
             ),
             AuthButton(

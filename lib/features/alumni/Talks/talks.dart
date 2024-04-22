@@ -11,7 +11,7 @@ class TalksPage extends StatefulWidget {
   });
 
   @override
-  _TalksPageState createState() => _TalksPageState();
+  State<TalksPage> createState() => _TalksPageState();
 }
 
 class _TalksPageState extends State<TalksPage> {
