@@ -23,73 +23,75 @@ class _CreateTalksFromAdminState extends State<CreateTalksFromAdmin> {
       appBar: AppBar(
         title: const Text('Create Talks '),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          CustomTextField(
-            label: 'Speaker',
-            controller: speaksController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            label: 'Date',
-            controller: dateController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            label: 'Description',
-            controller: descriptionController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            label: 'Time',
-            controller: timeController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            label: 'Tittle',
-            controller: tittleController,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          AuthButton(
-            label: 'Create Talks',
-            callback: () async {
-              await db
-                  .collection('jobs')
-                  .add(
-                    {
-                      'title': tittleController.text,
-                      'description': descriptionController.text,
-                      'speaker': speaksController.text,
-                      'time': timeController.text,
-                      'date': timeController.text
-                    },
-                  )
-                  .then(
-                    (value) => Navigator.pop(context),
-                  )
-                  .then(
-                    (value) => ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Talks Created Successfully'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            CustomTextField(
+              label: 'Speaker',
+              controller: speaksController,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomTextField(
+              label: 'Date',
+              controller: dateController,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomTextField(
+              label: 'Description',
+              controller: descriptionController,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomTextField(
+              label: 'Time',
+              controller: timeController,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomTextField(
+              label: 'Tittle',
+              controller: tittleController,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            AuthButton(
+              label: 'Create Talks',
+              callback: () async {
+                await db
+                    .collection('Talks')
+                    .add(
+                      {
+                        'title': tittleController.text,
+                        'description': descriptionController.text,
+                        'speaker': speaksController.text,
+                        'time': timeController.text,
+                        'date': timeController.text
+                      },
+                    )
+                    .then(
+                      (value) => Navigator.pop(context),
+                    )
+                    .then(
+                      (value) => ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Talks Created Successfully'),
+                        ),
                       ),
-                    ),
-                  );
-            },
-          )
-        ],
+                    );
+              },
+            )
+          ],
+        ),
       ),
     );
   }
