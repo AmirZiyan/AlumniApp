@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
@@ -32,6 +33,7 @@ class PaymentGatewayPage extends StatefulWidget {
 }
 
 class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
+  TextEditingController amount=new TextEditingController();
   Razorpay? _razorpay;
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print('Payment Success: ${response.paymentId}');
@@ -61,11 +63,12 @@ class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
   }
 
   void initiatePayment() async {
+    int enteredAmount = int.tryParse(amount.text) ?? 0;
     print("payment");
     var options = {
       'key': 'rzp_test_TtSDhSH3AFn8Su',
-      'amount': 10000, // Payment amount in paisa (e.g., 10000 for ₹100)
-      'name': 'Merchant Name',
+      'amount': enteredAmount *100, // Payment amount in paisa (e.g., 10000 for ₹100)
+      'name': 'Fisat',
       'description': 'Test Payment',
       'prefill': {'contact': '9876543210', 'email': 'test@example.com'},
     };
@@ -84,10 +87,19 @@ class _PaymentGatewayPageState extends State<PaymentGatewayPage> {
       appBar: AppBar(
         title: const Text('Payment Gateway'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: initiatePayment,
-          child: const Text('Pay Now'),
+      body: Container(
+        child: Column(
+          children: [
+            TextField(
+              controller: amount,
+              decoration: InputDecoration(labelText: "Enter the amount",border: OutlineInputBorder()),),
+            Center(
+              child: ElevatedButton(
+                onPressed: initiatePayment,
+                child: const Text('Pay Now'),
+              ),
+            ),
+          ],
         ),
       ),
     );

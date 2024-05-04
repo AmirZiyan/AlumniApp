@@ -1,14 +1,12 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_services_with_bloc/features/fun_raising/payment.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_slide_to_act/gradient_slide_to_act.dart';
 
 class FundRaisingPage extends StatefulWidget {
-  const FundRaisingPage({super.key});
+  const FundRaisingPage({Key? key}) : super(key: key);
 
   @override
   State<FundRaisingPage> createState() => _FundRaisingPageState();
@@ -16,10 +14,11 @@ class FundRaisingPage extends StatefulWidget {
 
 class _FundRaisingPageState extends State<FundRaisingPage> {
   final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
-    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fund Raising'),
@@ -29,8 +28,7 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream:
-                  FirebaseFirestore.instance.collection('funds').snapshots(),
+              stream: FirebaseFirestore.instance.collection('funds').snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   final docs = snapshot.data!.docs;
@@ -56,8 +54,7 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                      'Amount Needed :${data['amount_needed']}'),
+                                  child: Text('Amount Needed :${data['amount_needed']}'),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -74,123 +71,15 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    TextButton(
+                                    ElevatedButton(
                                       onPressed: () async {
-                                        showBottomSheet(
-                                          context: context,
-                                          builder: (context) {
-                                            return Container(
-                                              color: Colors.transparent,
-                                              height: height * 0.6,
-                                              width: width,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            20.0),
-                                                    child: TextField(
-                                                      controller:
-                                                          amountController,
-                                                      decoration:
-                                                          const InputDecoration(
-                                                        hintText:
-                                                            'Enter Amount',
-                                                        border:
-                                                            OutlineInputBorder(),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: width * 0.8,
-                                                    child: GradientSlideToAct(
-                                                      width: width * 0.8,
-                                                      textStyle:
-                                                          const TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 15),
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0Xff172663),
-                                                      onSubmit: () async {
-                                                        if (amountController
-                                                            .text.isNotEmpty) {
-                                                          try {
-                                                            await FirebaseFirestore
-                                                                .instance
-                                                                .collection(
-                                                                    'fund_received')
-                                                                .add({
-                                                              'Donated_By':
-                                                                  FirebaseAuth
-                                                                      .instance
-                                                                      .currentUser!
-                                                                      .email
-                                                                      .toString(),
-                                                              'Account_no':
-                                                                  '${data['ac_no']}',
-                                                              'Amount':
-                                                                  '${double.parse(amountController.text)}',
-                                                              'Amount_Needed_Person':
-                                                                  '${data['name']}'
-                                                            }).then(
-                                                              (value) =>
-                                                                  Navigator.pop(
-                                                                      context),
-                                                            );
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              const SnackBar(
-                                                                content: Text(
-                                                                    'Paid Successfully'),
-                                                              ),
-                                                            );
-                                                          } catch (e) {
-                                                            log(e.toString());
-                                                          }
-                                                        } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            const SnackBar(
-                                                              content: Text(
-                                                                  'Please Enter An Amount'),
-                                                            ),
-                                                          );
-                                                        }
-                                                      },
-                                                      gradient:
-                                                          const LinearGradient(
-                                                        begin:
-                                                            Alignment.topLeft,
-                                                        end: Alignment
-                                                            .bottomRight,
-                                                        colors: [
-                                                          Color(0xff0da6c2),
-                                                          Color(0xff0E39C6),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: height * 0.1,
-                                                  )
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => PaymentGatewayPage()),
                                         );
                                       },
                                       child: const Text('Sponsor Now'),
                                     ),
-                                    // TextButton(
-                                    //   onPressed: () {},
-                                    //   child: const Text('Call Student'),
-                                    // )
                                   ],
                                 )
                               ],
@@ -220,3 +109,5 @@ class _FundRaisingPageState extends State<FundRaisingPage> {
     );
   }
 }
+
+
