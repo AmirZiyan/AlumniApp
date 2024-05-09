@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/start_up_page/start_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StudentJobsPage extends StatefulWidget {
   const StudentJobsPage({super.key});
@@ -49,98 +50,161 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                       itemBuilder: (context, index) {
                         final data = docs[index];
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            child: Card(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Company Name :${data['company_name']}'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Text('Position :${data['position']}'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Place :${data['place']}'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Salary :${data['salary']}'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Text('Apply Email :${data['email']}'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Hr Contact Number:${data['contact_number']}'),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              child: Material(
+                                elevation: 10,
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(colors: [
+                                        Colors.blue.shade500,
+                                        Colors.blue.shade400,
+                                        Colors.blue.shade300,
+                                        Colors.blue.shade200,
+                                      ]),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      ElevatedButton(
-                                      onPressed: ()async {
-
-  try {
-                                          await FirebaseFirestore.instance
-                                              .collection('applied_jobs')
-                                              .add({
-                                            'Email': FirebaseAuth
-                                                .instance.currentUser!.email
-                                                .toString(),
-                                            'Company': '${data['company_name']}',
-                                            'Position': '${data['position']}'
-                                          }).then((value) => showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return AlertDialog(
-                                                        title: const Text(
-                                                            'Job Applied'),
-                                                        content: const Text(
-                                                            'Your Applications Sent SuccessFully'),
-                                                        actions: <Widget>[
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                            child: const Text(
-                                                                'OK'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  ));
-                                        } catch (e) {
-                                          log(e.toString());
-                                        }
-
-                                       
-                                      },
-                                      child: const Text('Apply now'),
-                                    ),
-                                      // TextButton(
-                                      //   onPressed: () {},
-                                      //   child:
-                                      //       const Text('Apply Through Email'),
-                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 29, horizontal: 20),
+                                        child: Row(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              child: Image.asset(
+                                                'assets/images/ma.jpg',
+                                                height: 50,
+                                                width: 50,
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20),
+                                                  child: Text(
+                                                    data['position']
+                                                        .toString()
+                                                        .toUpperCase(),
+                                                    style: GoogleFonts.aBeeZee(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20),
+                                                  child: Text(
+                                                    data['company_name']
+                                                        .toString()
+                                                        .toUpperCase(),
+                                                    style: GoogleFonts.aBeeZee(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w200,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 20),
+                                            child: Text(
+                                              "Salary : ${data['salary']}"
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.aBeeZee(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: 15),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 20),
+                                            child: Text(
+                                              "Phone :${data['contact_number']}"
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.aBeeZee(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: 12),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            " Email :${data['email']}"
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: GoogleFonts.aBeeZee(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w200,
+                                                fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 30, bottom: 20),
+                                            child: Text(
+                                              "Posted : ${data['place']}"
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.aBeeZee(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: 12),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 30, bottom: 20),
+                                            child: Text(
+                                              data['posted_by']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.aBeeZee(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: 12),
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        );
+                            ));
                       },
                     ),
                   );

@@ -200,34 +200,7 @@ class _AlumniViewJobState extends State<AlumniViewJob> {
                                       ],
                                     )
 
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child: Text(
-                                    //       'Company Name :${data['company_name']}'),
-                                    // ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child:
-                                    //       Text('Position :${data['position']}'),
-                                    // ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child: Text('Place :${data['place']}'),
-                                    // ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child: Text('Salary :${data['salary']}'),
-                                    // ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child:
-                                    //       Text('Apply Email :${data['email']}'),
-                                    // ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child: Text(
-                                    //       'Hr Contact Number:${data['contact_number']}'),
-                                    // ),
+                                 
                                   ],
                                 ),
                               ),

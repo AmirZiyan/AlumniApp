@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TalksPage extends StatefulWidget {
   const TalksPage({
@@ -42,96 +43,193 @@ class _TalksPageState extends State<TalksPage> {
                         final data = docs[index];
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Title: ${data['title']}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Speaker: ${data['speaker']}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                      'Description: ${data['description']}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Date: ${data['date']}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Time: ${data['time']}'),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        try {
-                                          await FirebaseFirestore.instance
-                                              .collection('talks_booked')
-                                              .add({
-                                            'Email': FirebaseAuth
-                                                .instance.currentUser!.email
-                                                .toString(),
-                                            'event': '${data['title']}',
-                                            'time': '${data['time']}'
-                                          }).then((value) => showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return AlertDialog(
-                                                        title: const Text(
-                                                            'Seat Booked'),
-                                                        content: const Text(
-                                                            'Your seat has been booked!'),
-                                                        actions: <Widget>[
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                            child: const Text(
-                                                                'OK'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  ));
-                                        } catch (e) {
-                                          log(e.toString());
-                                        }
+                          child: Material(
+                            elevation: 10,
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              height: 200,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(colors: [
+                                    Colors.blue.shade500,
+                                    Colors.blue.shade400,
+                                    Colors.blue.shade300,
+                                    Colors.blue.shade200,
+                                  ]),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 29, horizontal: 20),
+                                    child: Row(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          child: Image.asset(
+                                            'assets/images/talks.png',
+                                            height: 50,
+                                            width: 50,
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20),
+                                              child: Text(
+                                                "Title:  ${data['title']}"
+                                                    .toString()
+                                                    .toUpperCase(),
+                                                style: GoogleFonts.aBeeZee(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: 16),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20),
+                                              child: Text(
+                                                "Speaker: ${data['speaker']}"
+                                                    .toString()
+                                                    .toUpperCase(),
+                                                style: GoogleFonts.aBeeZee(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w200,
+                                                    fontSize: 15),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          "${data['description']}"
+                                              .toString()
+                                              .toUpperCase(),
+                                          style: GoogleFonts.aBeeZee(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 10,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          "Date :${data['date']}"
+                                              .toString()
+                                              .toUpperCase(),
+                                          style: GoogleFonts.aBeeZee(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Time :${data['time']}"
+                                            .toString()
+                                            .toUpperCase(),
+                                        style: GoogleFonts.aBeeZee(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 12),
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      TextButton(
+                                          onPressed: () async {
+                                            try {
+                                              await FirebaseFirestore.instance
+                                                  .collection('talks_booked')
+                                                  .add({
+                                                'Email': FirebaseAuth
+                                                    .instance.currentUser!.email
+                                                    .toString(),
+                                                'event': '${data['title']}',
+                                                'time': '${data['time']}'
+                                              }).then((value) => showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: const Text(
+                                                                'Seat Booked'),
+                                                            content: const Text(
+                                                                'Your seat has been booked!'),
+                                                            actions: <Widget>[
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                child:
+                                                                    const Text(
+                                                                        'OK'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ));
+                                            } catch (e) {
+                                              log(e.toString());
+                                            }
 
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: const Text('Seat Booked'),
-                                              content: const Text(
-                                                  'Your seat has been booked!'),
-                                              actions: <Widget>[
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('OK'),
-                                                ),
-                                              ],
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      const Text('Seat Booked'),
+                                                  content: const Text(
+                                                      'Your seat has been booked!'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: const Text('OK'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
                                             );
                                           },
-                                        );
-                                      },
-                                      child: const Text('Book Now'),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                          child: Text(
+                                            'Book Now',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ))
+                                    ],
+                                  ),
+                                  Spacer(),
+                                ],
+                              ),
                             ),
                           ),
                         );
