@@ -20,10 +20,12 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
       ),
       body: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height*0.8,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.8,
             child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection('Get_together').snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('Get_together')
+                  .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -65,8 +67,12 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
                             ElevatedButton(
                               onPressed: () async {
                                 try {
-                                  await FirebaseFirestore.instance.collection('booked_getTogether').add({
-                                    'Email': FirebaseAuth.instance.currentUser!.email.toString(),
+                                  await FirebaseFirestore.instance
+                                      .collection('booked_getTogether')
+                                      .add({
+                                    'Email': FirebaseAuth
+                                        .instance.currentUser!.email
+                                        .toString(),
                                     'batch': '${data['batch']}',
                                     'venue': '${data['venue']}',
                                   });
@@ -75,7 +81,8 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text('Seat Booked'),
-                                        content: const Text('Your seat has been booked!'),
+                                        content: const Text(
+                                            'Your seat has been booked!'),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -94,7 +101,8 @@ class _GetTogetherPageState extends State<GetTogetherPage> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text('Error'),
-                                        content: Text('Failed to book seat: ${e.toString()}'),
+                                        content: Text(
+                                            'Failed to book seat: ${e.toString()}'),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
