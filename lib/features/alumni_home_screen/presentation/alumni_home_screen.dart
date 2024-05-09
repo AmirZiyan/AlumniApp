@@ -61,7 +61,7 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
                   );
                 },
               ),
- AlumniCards(
+              AlumniCards(
                 width: width,
                 height: height,
                 imagePath: 'assets/images/jobs.png',
@@ -75,8 +75,6 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
                   );
                 },
               ),
-
-
             ],
           ),
           SizedBox(
@@ -85,7 +83,6 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
               AlumniCards(
                 width: width,
                 height: height,
@@ -99,7 +96,8 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
                     ),
                   );
                 },
-              ),AlumniCards(
+              ),
+              AlumniCards(
                 width: width,
                 height: height,
                 imagePath: 'assets/images/fund.png',
@@ -113,7 +111,6 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
                   );
                 },
               ),
-             
             ],
           ),
           SizedBox(
@@ -122,7 +119,6 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
               // AlumniCards(
               //   width: width,
               //   height: height,
@@ -151,10 +147,8 @@ class _AlumniHomeScreen extends State<AlumniHomeScreen> {
                   );
                 },
               ),
-             
             ],
           ),
-
         ],
       ),
     );
