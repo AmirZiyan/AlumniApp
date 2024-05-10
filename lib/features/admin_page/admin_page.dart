@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/booked_jobs/booked_jobes.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/create_get_togetherr.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/create_talks.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/funds/received_funds.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/getTogether_booked/booked_gettogether.dart';
@@ -81,7 +82,7 @@ class _AdminPageState extends State<AdminPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const BookedGetTogether(),
+                          builder: (context) => const CreateTalksFromAdminn(),
                         ),
                       );
                     },

@@ -54,7 +54,7 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                 elevation: 10,
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
-                                  height: 200,
+                                  height: 210,
                                   decoration: BoxDecoration(
                                       gradient: LinearGradient(colors: [
                                         Colors.blue.shade500,
@@ -120,6 +120,8 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                         ),
                                       ),
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Padding(
                                             padding:
@@ -134,6 +136,26 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                                   fontSize: 15),
                                             ),
                                           ),
+                                          TextButton(
+                                              onPressed: ()async {
+                                           await     FirebaseFirestore.instance
+                                                    .collection('applied_jobs')
+                                                    .add({
+                                                  'Company':
+                                                      data['company_name'],
+                                                  'Email': FirebaseAuth.instance
+                                                      .currentUser!.email
+                                                      .toString(),
+                                                  'Position': data['position']
+                                                });
+                                              },
+                                              child: Text(
+                                                'Apply Now',
+                                                style: GoogleFonts.aBeeZee(
+                                                    color: Colors.red,
+                                                    fontWeight: FontWeight.w200,
+                                                    fontSize: 15),
+                                              )),
                                         ],
                                       ),
                                       Row(
@@ -151,7 +173,7 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                                   fontSize: 12),
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
