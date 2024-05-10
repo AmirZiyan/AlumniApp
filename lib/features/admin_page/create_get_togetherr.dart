@@ -57,7 +57,6 @@ class _CreateTalksFromAdminnState extends State<CreateTalksFromAdminn> {
             const SizedBox(
               height: 20,
             ),
-         
             const SizedBox(
               height: 20,
             ),
@@ -70,7 +69,6 @@ class _CreateTalksFromAdminnState extends State<CreateTalksFromAdminn> {
                       {
                         'batch': batchController.text,
                         'venue': venueController.text,
-                       
                         'time': timeController.text,
                         'date': timeController.text
                       },

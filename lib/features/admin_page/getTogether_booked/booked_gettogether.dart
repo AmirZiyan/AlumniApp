@@ -15,7 +15,7 @@ class _BookedGetTogetherState extends State<BookedGetTogether> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Talks'),
+        title: const Text('Booked GetTogether'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('booked_getTogether').snapshots(),
