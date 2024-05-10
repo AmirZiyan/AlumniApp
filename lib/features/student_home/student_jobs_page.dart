@@ -137,8 +137,8 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                             ),
                                           ),
                                           TextButton(
-                                              onPressed: ()async {
-                                           await     FirebaseFirestore.instance
+                                              onPressed: () async {
+                                                await FirebaseFirestore.instance
                                                     .collection('applied_jobs')
                                                     .add({
                                                   'Company':
@@ -147,7 +147,18 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                                       .currentUser!.email
                                                       .toString(),
                                                   'Position': data['position']
-                                                });
+                                                }).then(
+                                                  (value) =>
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Applied For ${data['position']} at ${data['company_name']}',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
                                               },
                                               child: Text(
                                                 'Apply Now',
