@@ -4,17 +4,17 @@ import 'package:firebase_services_with_bloc/features/start_up_page/start_page.da
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AdminJobPage extends StatefulWidget {
-  const AdminJobPage({super.key});
+class AdminJobsPage extends StatefulWidget {
+  const AdminJobsPage({super.key});
 
   @override
-  State<AdminJobPage> createState() => _AdminJobPageState();
+  State<AdminJobsPage> createState() => _AdminJobsPageState();
 }
 
-class _AdminJobPageState extends State<AdminJobPage> {
+class _AdminJobsPageState extends State<AdminJobsPage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
@@ -136,7 +136,7 @@ class _AdminJobPageState extends State<AdminJobPage> {
                                                   fontSize: 15),
                                             ),
                                           ),
-
+                                        
                                         ],
                                       ),
                                       Row(

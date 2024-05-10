@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_services_with_bloc/features/admin_page/admin_job_page.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/booked_jobs/booked_jobes.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/create_get_togetherr.dart';
 import 'package:firebase_services_with_bloc/features/admin_page/create_talks.dart';
@@ -140,6 +141,19 @@ class _AdminPageState extends State<AdminPage> {
                     width: width,
                     imagePath: 'assets/images/booked_get.png',
                     label: 'Get-together'), 
+                     AlumniCards(
+                    callback: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AdminJobPage(),
+                        ),
+                      );
+                    },
+                    height: height,
+                    width: width,
+                    imagePath: 'assets/images/view_jobs.png',
+                    label: 'View Jobs'), 
               ],
             ),
             AuthButton(
