@@ -77,7 +77,7 @@ class _StudentJobsPageState extends State<StudentJobsPage> {
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                               child: Image.asset(
-                                                'assets/images/ma.jpg',
+                                                'assets/images/jobs.png',
                                                 height: 50,
                                                 width: 50,
                                               ),

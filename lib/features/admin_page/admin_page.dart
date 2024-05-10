@@ -27,14 +27,12 @@ class _AdminPageState extends State<AdminPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                
                 AlumniCards(
                     callback: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const AppliedJobs(),
-
                         ),
                       );
                     },
@@ -78,7 +76,6 @@ class _AdminPageState extends State<AdminPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-               
                 AlumniCards(
                     callback: () {
                       Navigator.push(
@@ -91,7 +88,7 @@ class _AdminPageState extends State<AdminPage> {
                     height: height,
                     width: width,
                     imagePath: 'assets/images/get_together.png',
-                    label: 'Create GetTogether')
+                    label: 'Create GetTogether'),
               ],
             ),
             AuthButton(
